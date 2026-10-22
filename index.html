@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wei-Wei Chien · Robotics</title>
+<meta name="description" content="Robotics portfolio of Wei-Wei Chien, Mechanical Engineering at Purdue University.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single reading column; each project = header line, 16:9 video, metrics strip, then write-up. */
+:root {
+  --bg: #f5f7f9;
+  --surface: #ffffff;
+  --ink: #131820;
+  --muted: #586273;
+  --line: #dce1e8;
+  --accent: #1d5bd0;
+  --accent-soft: #e6eefc;
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1318; --surface: #171c23; --ink: #e8ecf1; --muted: #9aa5b5;
+    --line: #2a313b; --accent: #7aa7ff; --accent-soft: #1b2638; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1318; --surface: #171c23; --ink: #e8ecf1; --muted: #9aa5b5;
+  --line: #2a313b; --accent: #7aa7ff; --accent-soft: #1b2638; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 1rem/1.65 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+.wrap {
+  max-width: 880px;
+  margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+
+/* Intro */
+header.intro { padding-block: 72px 40px; border-bottom: 1px solid var(--line); }
+.eyebrow {
+  font: 500 0.78rem/1 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 18px;
+}
+h1 {
+  font: 800 clamp(2.4rem, 7vw, 3.8rem)/1.02 var(--font-display);
+  font-stretch: 85%;
+  letter-spacing: -0.01em;
+  margin: 0 0 18px;
+  text-wrap: balance;
+}
+.lede { font-size: 1.12rem; color: var(--muted); max-width: 62ch; margin: 0 0 26px; }
+.lede strong { color: var(--ink); font-weight: 600; }
+.contact { display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: 0.95rem; }
+.contact a { font-weight: 500; }
+
+/* Project index */
+nav.index { padding-block: 28px; border-bottom: 1px solid var(--line); }
+nav.index ol {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;
+}
+nav.index a {
+  display: flex; flex-direction: column; gap: 2px;
+  padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--surface); color: var(--ink); text-decoration: none;
+  transition: border-color .15s;
+}
+nav.index a:hover { border-color: var(--accent); }
+nav.index .t { font: 700 1rem/1.3 var(--font-display); font-stretch: 90%; }
+nav.index .s { font-size: 0.85rem; color: var(--muted); }
+
+/* Project */
+.project { padding-block: 64px; border-bottom: 1px solid var(--line); scroll-margin-top: 12px; }
+.project:last-of-type { border-bottom: 0; }
+.meta {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px;
+  font: 400 0.82rem/1.4 var(--font-mono); color: var(--muted); margin-bottom: 10px;
+}
+h2 {
+  font: 800 clamp(1.7rem, 4.6vw, 2.35rem)/1.1 var(--font-display);
+  font-stretch: 85%;
+  margin: 0 0 6px; text-wrap: balance;
+}
+.role { margin: 0 0 26px; color: var(--muted); font-size: 1.02rem; }
+.role strong { color: var(--ink); font-weight: 600; }
+
+/* Video */
+.video {
+  position: relative; width: 100%; max-width: 100%; aspect-ratio: 16 / 9;
+  border-radius: 10px; overflow: hidden; background: #0b0e12;
+  border: 1px solid var(--line);
+}
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video .play {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  padding: 0; border: 0; cursor: pointer; background: #0b0e12;
+}
+.video .play img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: .9; transition: opacity .2s; }
+.video .play:hover img { opacity: 1; }
+.video .play .btn {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: 72px; height: 50px; border-radius: 14px; background: rgba(15,15,15,.82);
+  display: grid; place-items: center; transition: background .2s;
+}
+.video .play:hover .btn { background: #e62117; }
+.video .play .btn::after {
+  content: ""; border-style: solid; border-width: 11px 0 11px 19px;
+  border-color: transparent transparent transparent #fff; margin-left: 4px;
+}
+.video.pending {
+  display: grid; place-items: center; text-align: center;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 14px, var(--accent-soft) 14px 15px),
+    var(--surface);
+}
+.video.pending .ph { display: grid; gap: 6px; padding: 16px; }
+.video.pending .ph b { font: 700 1.05rem/1.2 var(--font-display); color: var(--ink); }
+.video.pending .ph span { font: 400 0.8rem/1.4 var(--font-mono); color: var(--muted); }
+
+/* Metrics strip */
+.metrics {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  margin: 22px 0 28px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.metric { padding: 14px 16px 14px 0; min-width: 0; }
+.metric + .metric { padding-left: 16px; border-left: 1px solid var(--line); }
+.metric .v {
+  font: 700 1.5rem/1.1 var(--font-display); font-stretch: 90%;
+  font-variant-numeric: tabular-nums; color: var(--accent);
+}
+.metric .k { font-size: 0.84rem; color: var(--muted); margin-top: 4px; }
+
+/* Write-up */
+.summary { margin: 0 0 18px; max-width: 68ch; }
+ul.points { margin: 0 0 26px; padding-left: 1.15rem; display: grid; gap: 10px; max-width: 70ch; }
+ul.points li::marker { color: var(--accent); }
+.stack { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.stack li {
+  font: 500 0.78rem/1 var(--font-mono); padding: 7px 10px; border-radius: 999px;
+  background: var(--accent-soft); color: var(--ink);
+}
+
+footer { padding-block: 36px 56px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9rem; }
+
+@media (max-width: 560px) {
+  header.intro { padding-block: 48px 32px; }
+  nav.index ol { grid-template-columns: minmax(0, 1fr); }
+  .project { padding-block: 48px; }
+  .metric + .metric { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+}
+</style>
+</head>
+<body>
+
+<header class="intro">
+  <div class="wrap">
+    <p class="eyebrow">Robotics Portfolio</p>
+    <h1>Wei-Wei Chien</h1>
+    <p class="lede">
+      Mechanical Engineering at <strong>Purdue University</strong> (B.S., expected May 2027).
+      I build software for robots that move through the real world: autonomous navigation in crop fields,
+      drone flight control, mobile robots, and a quadruped that can fly. Below are four projects, each with a short video.
+    </p>
+    <div class="contact">
+      <a href="mailto:chien21@purdue.edu">chien21@purdue.edu</a>
+      <a href="https://www.linkedin.com/in/wei-weichien" target="_blank" rel="noopener">LinkedIn</a>
+      <span style="color:var(--muted)">West Lafayette, IN</span>
+    </div>
+  </div>
+</header>
+
+<nav class="index" aria-label="Projects">
+  <div class="wrap">
+    <ol>
+      <li><a href="#corn-navigation"><span class="t">Vision-Based Navigation in Corn Fields</span><span class="s">Undergraduate Research · 2026</span></a></li>
+      <li><a href="#px4-drone"><span class="t">PX4 Drone Flight Control</span><span class="s">ITRI Internship · 2025</span></a></li>
+      <li><a href="#dogcopter"><span class="t">Dogcopter: Quadruped–Drone</span><span class="s">Autonomous Robotics Club · 2024–2026</span></a></li>
+      <li><a href="#amr-simulation"><span class="t">Mecanum AMR Simulation &amp; Nav2</span><span class="s">ITRI Internship · 2024</span></a></li>
+    </ol>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ========== 1. Corn-field navigation ========== -->
+  <section class="project" id="corn-navigation">
+    <div class="wrap">
+      <div class="meta"><span>Multi-Scale Robotics and Automation Lab · Purdue</span><span>May 2026 – Present</span></div>
+      <h2>GPS-Free Visual Navigation in Corn Fields</h2>
+      <p class="role"><strong>Undergraduate Researcher</strong> · Advisor: Dr. David Cappelleri · NSF ERC for IoT for Precision Agriculture (IoT4Ag)</p>
+
+      <!-- Paste the YouTube link or video ID between the quotes in data-youtube -->
+      <div class="video" data-youtube="" data-title="GPS-free visual navigation in a corn field"></div>
+
+      <div class="metrics">
+        <div class="metric"><div class="v">20 rows</div><div class="k">consecutive autonomous traversal</div></div>
+        <div class="metric"><div class="v">0</div><div class="k">human interventions</div></div>
+        <div class="metric"><div class="v">0.6 m/s</div><div class="k">under full canopy</div></div>
+        <div class="metric"><div class="v">0.836 mIoU</div><div class="k">segmentation, validation set</div></div>
+      </div>
+
+      <ul class="points">
+        <li>Validated a GPS-free visual navigation stack in a commercial corn field, achieving 20 consecutive rows of autonomous traversal with zero human interventions at 0.6 m/s under full canopy, and characterized the speed ceiling at which row reacquisition degrades.</li>
+        <li>Implemented a model predictive controller solving an 8-step-horizon constrained optimization each control cycle over a two-state image-space error model, eliminating the need for camera calibration or GPS while enforcing angular-velocity and slew-rate limits for smooth steering.</li>
+        <li>Hand-annotated 574 field images and fine-tuned a DINOv3-based semantic segmentation model to classify traversable ground, crop, and sky, reaching 0.836 mIoU on the lower-camera validation set as the sole perceptual input to the navigation stack.</li>
+        <li>Architected a finite state machine over front and rear cameras coordinating in-row navigation, row-exit detection, odometry-based turning, and reacquisition, using the rear view for exit centering and dead-end recovery.</li>
+        <li>Diagnosed a 12× control-rate variance between GPU and CPU hardware causing false row-exit triggers, and replaced frame-count debouncing with distance-based accumulators to make exit detection platform-independent.</li>
+      </ul>
+      <ul class="stack" aria-label="Tools">
+        <li>ROS 2</li><li>Model Predictive Control</li><li>PyTorch</li><li>DINOv3</li><li>Semantic Segmentation</li><li>Finite State Machine</li><li>Python</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== 2. PX4 drone ========== -->
+  <section class="project" id="px4-drone">
+    <div class="wrap">
+      <div class="meta"><span>Industrial Technology Research Institute · Hsinchu, Taiwan</span><span>May 2025 – Aug 2025</span></div>
+      <h2>Drone Flight Control Migration to PX4</h2>
+      <p class="role"><strong>Drone Flight Controller Intern</strong> · Sole developer</p>
+
+      <div class="video" data-youtube="" data-title="PX4 drone offboard control"></div>
+
+      <div class="metrics">
+        <div class="metric"><div class="v">ArduPilot → PX4</div><div class="k">BSD-compliant flight stack</div></div>
+        <div class="metric"><div class="v">ROS 2 + DDS</div><div class="k">offboard control from Raspberry Pi</div></div>
+        <div class="metric"><div class="v">1 command</div><div class="k">environment setup</div></div>
+      </div>
+
+      <ul class="points">
+        <li>Spearheaded the migration of drone control systems from ArduPilot to PX4 as the sole developer, transitioning the project to a BSD-compliant architecture to enable future technology transfers.</li>
+        <li>Integrated a Raspberry Pi companion computer with the PX4 flight controller using ROS 2 and uXRCE-DDS to enable autonomous, offboard control through external Python scripts.</li>
+        <li>Developed a custom PyQt GUI to abstract complex CLI operations into an intuitive control interface, enabling non-technical users to execute missions without prior ROS 2 or RC experience.</li>
+        <li>Authored a GitHub repository of scripts and documentation that reduced environment setup to a single build command for future researchers.</li>
+      </ul>
+      <ul class="stack" aria-label="Tools">
+        <li>PX4 Autopilot</li><li>ROS 2</li><li>uXRCE-DDS</li><li>Raspberry Pi</li><li>MAVSDK / MAVLink</li><li>PyQt</li><li>Python</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== 3. Dogcopter ========== -->
+  <section class="project" id="dogcopter">
+    <div class="wrap">
+      <div class="meta"><span>Autonomous Robotics Club · Purdue</span><span>Aug 2024 – May 2026</span></div>
+      <h2>Dogcopter: A Transforming Quadruped–Drone</h2>
+      <p class="role"><strong>Software Lead</strong></p>
+
+      <div class="video" data-youtube="" data-title="Dogcopter quadruped-drone"></div>
+
+      <div class="metrics">
+        <div class="metric"><div class="v">PX4 + Go2</div><div class="k">flight stack on a quadruped</div></div>
+        <div class="metric"><div class="v">10 → 6 wks</div><div class="k">new-member onboarding</div></div>
+        <div class="metric"><div class="v">15+</div><div class="k">ROS 2 workshop participants</div></div>
+      </div>
+
+      <ul class="points">
+        <li>Directed the software team to develop a transforming quadruped-drone, integrating PX4 with the Unitree Go2 robot to enable autonomous flight behaviors, positioning the project for successful flight testing.</li>
+        <li>Accelerated team development by creating a technical training that reduced new-member onboarding from 10 weeks to under 6 weeks, covering URDF construction, Gazebo simulation, and ROS 2 package architecture.</li>
+        <li>Led a ROS 2 workshop for 15+ participants, providing hands-on instruction on node architecture and environment setup while guiding live debugging sessions for all attendees.</li>
+      </ul>
+      <ul class="stack" aria-label="Tools">
+        <li>PX4 Autopilot</li><li>Unitree Go2</li><li>ROS 2</li><li>Gazebo</li><li>URDF</li><li>Team Leadership</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== 4. AMR ========== -->
+  <section class="project" id="amr-simulation">
+    <div class="wrap">
+      <div class="meta"><span>Industrial Technology Research Institute · Hsinchu, Taiwan</span><span>May 2024 – Aug 2024</span></div>
+      <h2>Mecanum AMR Simulation and Nav2 Behavior Trees</h2>
+      <p class="role"><strong>AMR Software Engineering Intern</strong></p>
+
+      <div class="video" data-youtube="" data-title="Mecanum AMR simulation and navigation"></div>
+
+      <div class="metrics">
+        <div class="metric"><div class="v">Custom URDF</div><div class="k">Mecanum-wheeled robot</div></div>
+        <div class="metric"><div class="v">2D LiDAR</div><div class="k">integrated in Gazebo</div></div>
+        <div class="metric"><div class="v">C++ / Python</div><div class="k">custom Behavior Tree nodes</div></div>
+      </div>
+
+      <ul class="points">
+        <li>Generated a high-fidelity Gazebo simulation by creating a custom URDF for a Mecanum-wheeled robot and integrating 2D LiDAR with drive controllers, enabling virtual navigation testing before hardware trials.</li>
+        <li>Modified Nav2 decision-making logic by researching Behavior Tree architectures and implementing custom C++ and Python nodes, which improved robot state transitions and obstacle-detection reliability.</li>
+        <li>Authored a setup guide and created a Git repository with build scripts, enabling colleagues to independently compile, simulate, and navigate the AMR model using ROS 2 and Gazebo.</li>
+      </ul>
+      <ul class="stack" aria-label="Tools">
+        <li>ROS 2</li><li>Nav2</li><li>Behavior Trees</li><li>Gazebo</li><li>URDF</li><li>RViz</li><li>C++</li><li>Python</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Wei-Wei Chien · <a href="mailto:chien21@purdue.edu">chien21@purdue.edu</a> ·
+    <a href="https://www.linkedin.com/in/wei-weichien" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+// Each .video box reads its data-youtube attribute (a full YouTube link or an 11-character ID).
+// Empty → "video coming soon" placeholder. Filled → thumbnail; clicking it loads the player.
+function youtubeId(value) {
+  value = (value || "").trim();
+  if (/^[\w-]{11}$/.test(value)) return value;
+  const m = value.match(/(?:youtu\.be\/|v=|embed\/|shorts\/|live\/)([\w-]{11})/);
+  return m ? m[1] : null;
+}
+
+document.querySelectorAll(".video").forEach(function (box) {
+  const id = youtubeId(box.dataset.youtube);
+  const title = box.dataset.title || "Project video";
+
+  if (!id) {
+    box.classList.add("pending");
+    box.innerHTML = '<div class="ph"><b>Video coming soon</b><span>' + title + '</span></div>';
+    return;
+  }
+
+  const button = document.createElement("button");
+  button.className = "play";
+  button.type = "button";
+  button.setAttribute("aria-label", "Play video: " + title);
+  button.innerHTML =
+    '<img src="https://i.ytimg.com/vi/' + id + '/hqdefault.jpg" alt="" loading="lazy">' +
+    '<span class="btn" aria-hidden="true"></span>';
+  button.addEventListener("click", function () {
+    const iframe = document.createElement("iframe");
+    iframe.src = "https://www.youtube-nocookie.com/embed/" + id + "?autoplay=1&rel=0";
+    iframe.title = title;
+    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+    iframe.allowFullscreen = true;
+    box.replaceChildren(iframe);
+  });
+  box.replaceChildren(button);
+});
+</script>
+</body>
+</html>
