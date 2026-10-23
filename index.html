@@ -139,6 +139,19 @@ h2 {
 .video.pending .ph b { font: 700 1.05rem/1.2 var(--font-display); color: var(--ink); }
 .video.pending .ph span { font: 400 0.8rem/1.4 var(--font-mono); color: var(--muted); }
 
+/* Small video grid (Dogcopter onboarding) */
+.subhead {
+  font: 500 0.78rem/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted); margin: 28px 0 12px;
+}
+.video-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.video-grid figure { margin: 0; min-width: 0; display: grid; gap: 8px; }
+.video-grid figcaption { font-size: 0.9rem; font-weight: 500; }
+.video.small { border-radius: 8px; }
+.video.small .play .btn { width: 52px; height: 36px; border-radius: 10px; }
+.video.small .play .btn::after { border-width: 8px 0 8px 14px; margin-left: 3px; }
+.video.small.pending .ph b { font-size: 0.9rem; }
+
 /* Metrics strip */
 .metrics {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -196,8 +209,8 @@ footer { padding-block: 36px 56px; border-top: 1px solid var(--line); color: var
     <ol>
       <li><a href="#corn-navigation"><span class="t">Vision-Based Navigation in Corn Fields</span><span class="s">Undergraduate Research · 2026</span></a></li>
       <li><a href="#px4-drone"><span class="t">PX4 Drone Flight Control</span><span class="s">ITRI Internship · 2025</span></a></li>
-      <li><a href="#dogcopter"><span class="t">Dogcopter: Quadruped–Drone</span><span class="s">Autonomous Robotics Club · 2024–2026</span></a></li>
       <li><a href="#amr-simulation"><span class="t">Mecanum AMR Simulation &amp; Nav2</span><span class="s">ITRI Internship · 2024</span></a></li>
+      <li><a href="#dogcopter"><span class="t">Dogcopter: Quadruped–Drone</span><span class="s">Autonomous Robotics Club · 2024–2026</span></a></li>
     </ol>
   </div>
 </nav>
@@ -261,33 +274,7 @@ footer { padding-block: 36px 56px; border-top: 1px solid var(--line); color: var
     </div>
   </section>
 
-  <!-- ========== 3. Dogcopter ========== -->
-  <section class="project" id="dogcopter">
-    <div class="wrap">
-      <div class="meta"><span>Autonomous Robotics Club · Purdue</span><span>Aug 2024 – May 2026</span></div>
-      <h2>Dogcopter: A Transforming Quadruped–Drone</h2>
-      <p class="role"><strong>Software Lead</strong></p>
-
-      <div class="video" data-youtube="" data-title="Dogcopter quadruped-drone"></div>
-
-      <div class="metrics">
-        <div class="metric"><div class="v">PX4 + Go2</div><div class="k">flight stack on a quadruped</div></div>
-        <div class="metric"><div class="v">10 → 6 wks</div><div class="k">new-member onboarding</div></div>
-        <div class="metric"><div class="v">15+</div><div class="k">ROS 2 workshop participants</div></div>
-      </div>
-
-      <ul class="points">
-        <li>Directed the software team to develop a transforming quadruped-drone, integrating PX4 with the Unitree Go2 robot to enable autonomous flight behaviors, positioning the project for successful flight testing.</li>
-        <li>Accelerated team development by creating a technical training that reduced new-member onboarding from 10 weeks to under 6 weeks, covering URDF construction, Gazebo simulation, and ROS 2 package architecture.</li>
-        <li>Led a ROS 2 workshop for 15+ participants, providing hands-on instruction on node architecture and environment setup while guiding live debugging sessions for all attendees.</li>
-      </ul>
-      <ul class="stack" aria-label="Tools">
-        <li>PX4 Autopilot</li><li>Unitree Go2</li><li>ROS 2</li><li>Gazebo</li><li>URDF</li><li>Team Leadership</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ========== 4. AMR ========== -->
+  <!-- ========== 3. AMR ========== -->
   <section class="project" id="amr-simulation">
     <div class="wrap">
       <div class="meta"><span>Industrial Technology Research Institute · Hsinchu, Taiwan</span><span>May 2024 – Aug 2024</span></div>
@@ -309,6 +296,53 @@ footer { padding-block: 36px 56px; border-top: 1px solid var(--line); color: var
       </ul>
       <ul class="stack" aria-label="Tools">
         <li>ROS 2</li><li>Nav2</li><li>Behavior Trees</li><li>Gazebo</li><li>URDF</li><li>RViz</li><li>C++</li><li>Python</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== 4. Dogcopter ========== -->
+  <section class="project" id="dogcopter">
+    <div class="wrap">
+      <div class="meta"><span>Autonomous Robotics Club · Purdue</span><span>Aug 2024 – May 2026</span></div>
+      <h2>Dogcopter: A Transforming Quadruped–Drone</h2>
+      <p class="role"><strong>Software Lead</strong></p>
+
+      <div class="video" data-youtube="" data-title="Dogcopter quadruped-drone"></div>
+
+      <!-- Onboarding videos: paste each YouTube link into data-youtube, and edit the caption text below it -->
+      <h3 class="subhead">Onboarding training videos</h3>
+      <div class="video-grid">
+        <figure>
+          <div class="video small" data-youtube="" data-title="Onboarding video 1"></div>
+          <figcaption>1 · URDF construction</figcaption>
+        </figure>
+        <figure>
+          <div class="video small" data-youtube="" data-title="Onboarding video 2"></div>
+          <figcaption>2 · Gazebo simulation</figcaption>
+        </figure>
+        <figure>
+          <div class="video small" data-youtube="" data-title="Onboarding video 3"></div>
+          <figcaption>3 · ROS 2 package architecture</figcaption>
+        </figure>
+        <figure>
+          <div class="video small" data-youtube="" data-title="Onboarding video 4"></div>
+          <figcaption>4 · ROS 2 nodes and debugging</figcaption>
+        </figure>
+      </div>
+
+      <div class="metrics">
+        <div class="metric"><div class="v">PX4 + Go2</div><div class="k">flight stack on a quadruped</div></div>
+        <div class="metric"><div class="v">10 → 6 wks</div><div class="k">new-member onboarding</div></div>
+        <div class="metric"><div class="v">15+</div><div class="k">ROS 2 workshop participants</div></div>
+      </div>
+
+      <ul class="points">
+        <li>Directed the software team to develop a transforming quadruped-drone, integrating PX4 with the Unitree Go2 robot to enable autonomous flight behaviors, positioning the project for successful flight testing.</li>
+        <li>Accelerated team development by creating a technical training that reduced new-member onboarding from 10 weeks to under 6 weeks, covering URDF construction, Gazebo simulation, and ROS 2 package architecture.</li>
+        <li>Led a ROS 2 workshop for 15+ participants, providing hands-on instruction on node architecture and environment setup while guiding live debugging sessions for all attendees.</li>
+      </ul>
+      <ul class="stack" aria-label="Tools">
+        <li>PX4 Autopilot</li><li>Unitree Go2</li><li>ROS 2</li><li>Gazebo</li><li>URDF</li><li>Team Leadership</li>
       </ul>
     </div>
   </section>
