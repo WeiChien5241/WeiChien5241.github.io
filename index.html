@@ -147,6 +147,9 @@ h2 {
 .video-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .video-grid figure { margin: 0; min-width: 0; display: grid; gap: 8px; }
 .video-grid figcaption { font-size: 0.9rem; font-weight: 500; }
+.overview { margin: 0 0 16px; display: grid; gap: 8px; }
+.overview figcaption { font-size: 0.95rem; color: var(--muted); }
+.overview figcaption strong { color: var(--ink); font-weight: 600; }
 .video.small { border-radius: 8px; }
 .video.small .play .btn { width: 52px; height: 36px; border-radius: 10px; }
 .video.small .play .btn::after { border-width: 8px 0 8px 14px; margin-left: 3px; }
@@ -311,22 +314,26 @@ footer { padding-block: 36px 56px; border-top: 1px solid var(--line); color: var
 
       <!-- Onboarding videos: paste each YouTube link into data-youtube, and edit the caption text below it -->
       <h3 class="subhead">Onboarding training videos</h3>
+      <figure class="overview">
+        <div class="video" data-youtube="https://www.youtube.com/watch?v=SsDGEk8_zBk" data-title="Onboarding walkthrough and Gazebo updates"></div>
+        <figcaption><strong>Overview:</strong> Onboarding walkthrough and the changes needed to migrate from Gazebo Classic to the new Gazebo</figcaption>
+      </figure>
       <div class="video-grid">
         <figure>
-          <div class="video small" data-youtube="" data-title="Onboarding video 1"></div>
-          <figcaption>1 · URDF construction</figcaption>
+          <div class="video small" data-youtube="https://www.youtube.com/watch?v=tpi0aYkyrp4" data-title="Improve URDF with Xacro"></div>
+          <figcaption>1 · Improve URDF with Xacro</figcaption>
         </figure>
         <figure>
-          <div class="video small" data-youtube="" data-title="Onboarding video 2"></div>
-          <figcaption>2 · Gazebo simulation</figcaption>
+          <div class="video small" data-youtube="https://www.youtube.com/watch?v=AGLEGqLVtVI" data-title="Simulation with Gazebo"></div>
+          <figcaption>2 · Simulation with Gazebo</figcaption>
         </figure>
         <figure>
           <div class="video small" data-youtube="" data-title="Onboarding video 3"></div>
-          <figcaption>3 · ROS 2 package architecture</figcaption>
+          <figcaption>3 · Coming soon</figcaption>
         </figure>
         <figure>
-          <div class="video small" data-youtube="" data-title="Onboarding video 4"></div>
-          <figcaption>4 · ROS 2 nodes and debugging</figcaption>
+          <div class="video small" data-youtube="https://www.youtube.com/watch?v=RPESNeUO3xo" data-title="Create your own workspace to launch the URDF file"></div>
+          <figcaption>4 · Create your own workspace to launch the URDF file</figcaption>
         </figure>
       </div>
 
